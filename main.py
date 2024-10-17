@@ -5,9 +5,13 @@ from pydantic import BaseModel
 app = FastAPI()
 
 
-class Task(BaseModel):
+class TaskAdd(BaseModel):
     name: str
     description: str | None = None
+
+
+class Task(TaskAdd):
+    id: int
 
 
 @app.get('/tasks')
