@@ -1,5 +1,7 @@
+from typing import Annotated
+
 import uvicorn
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI
 from pydantic import BaseModel
 
 app = FastAPI()
@@ -12,6 +14,14 @@ class TaskAdd(BaseModel):
 
 class Task(TaskAdd):
     id: int
+
+
+tasks = []
+
+
+@app.post('/tasks')
+async def add_task(task: Annotated[TaskAdd, Depends()]):
+    return 'ok'
 
 
 @app.get('/tasks')
