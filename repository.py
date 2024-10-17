@@ -6,7 +6,7 @@ from schemas import TaskAdd
 
 class TaskRepository:
     @classmethod
-    async def add_tasks(cls, data: TaskAdd) -> int:
+    async def add_data(cls, data: TaskAdd) -> int:
         async with new_session() as session:
             task_dict = data.model_dump()
 
@@ -19,7 +19,7 @@ class TaskRepository:
             return task.id
 
     @classmethod
-    async def get_tasks(cls):
+    async def get_data(cls):
         async with new_session() as session:
             query = select(TaskTable)
 
