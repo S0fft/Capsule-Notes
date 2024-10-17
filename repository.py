@@ -1,3 +1,5 @@
+from sqlalchemy import select
+
 from database import TaskTable, new_session
 from main import TaskAdd
 
@@ -15,3 +17,13 @@ class TaskRepository:
             await session.commit()
 
             return task.id
+
+    @classmethod
+    async def get_tasks(cls):
+        async with new_session() as session:
+            query = select(TaskTable)
+
+            result = await session.execute(query)
+            tasks_models = result.scalars().all()
+
+            return tasks_models
