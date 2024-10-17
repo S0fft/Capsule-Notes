@@ -7,12 +7,14 @@ app = FastAPI()
 
 class Task(BaseModel):
     name: str
-    description: str | None
+    description: str | None = None
 
 
-@app.get('/home')
-def get_home():
-    return 'Hello world!'
+@app.get('/tasks')
+def get_tasks():
+    task = Task(name='Create a new task!')
+
+    return {'data': task}
 
 
 if __name__ == '__main__':
