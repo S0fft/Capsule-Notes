@@ -8,3 +8,8 @@ class TaskAdd(BaseModel):
 
 class Task(TaskAdd):
     id: int
+
+
+class TaskId(BaseModel):
+    ok: bool = True
+    task_id: int
