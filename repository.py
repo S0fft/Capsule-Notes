@@ -1,7 +1,7 @@
 from sqlalchemy import select
 
 from database import TaskTable, new_session
-from schemas import TaskAdd
+from schemas import Task, TaskAdd
 
 
 class TaskRepository:
@@ -19,11 +19,12 @@ class TaskRepository:
             return task.id
 
     @classmethod
-    async def get_data(cls):
+    async def get_data(cls) -> list[Task]:
         async with new_session() as session:
             query = select(TaskTable)
 
             result = await session.execute(query)
-            tasks_models = result.scalars().all()
+            task_models = result.scalars().all()
+            tasks_schemas = [Task.model_validate(task_model.__dict__) for task_model in task_models]
 
-            return tasks_models
+            return tasks_schemas
