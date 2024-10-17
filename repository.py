@@ -1,7 +1,7 @@
 from sqlalchemy import select
 
 from database import TaskTable, new_session
-from main import TaskAdd
+from schemas import TaskAdd
 
 
 class TaskRepository:
