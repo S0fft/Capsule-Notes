@@ -17,3 +17,8 @@ class TaskTable(BaseModel):
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str]
     description: Mapped[str | None] = None
+
+
+async def create_tables():
+    async with engine.begin() as conn:
+        await conn.run_sync(BaseModel.metadata.create_all())
