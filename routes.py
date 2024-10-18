@@ -28,7 +28,7 @@ async def update_task(task_id: int, task_data: TaskAdd) -> Task:
     updated_task = await TaskRepository.update_data(task_id, task_data)
 
     if not updated_task:
-        raise HTTPException(status_code=404, detail="Task not found")
+        raise HTTPException(status_code=404, detail="Task not found!")
 
     return updated_task
 
@@ -38,6 +38,6 @@ async def delete_task(task_id: int):
     deleted = await TaskRepository.delete_data(task_id)
 
     if not deleted:
-        raise HTTPException(status_code=404, detail="Task not found")
+        raise HTTPException(status_code=404, detail="Task not found!")
 
-    return {"message": "Task deleted"}
+    return {"message": "Task deleted!"}
