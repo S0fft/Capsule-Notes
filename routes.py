@@ -1,6 +1,7 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, BackgroundTasks, HTTPException
 from sqlalchemy.exc import NoResultFound
 
+from celery_app import add_task
 from repository import TaskRepository
 from schemas import Task, TaskAdd
 
@@ -11,8 +12,9 @@ router = APIRouter(
 
 
 @router.post('', response_model=Task)
-async def post_task(task: TaskAdd) -> Task:
+async def post_task(task: TaskAdd, background_tasks: BackgroundTasks) -> Task:
     new_task = await TaskRepository.add_data(task)
+    background_tasks.add_task(add_task.delay, task.name, task.description)
 
     return new_task
 
