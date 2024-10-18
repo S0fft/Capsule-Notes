@@ -1,9 +1,7 @@
-from typing import Annotated, List
-
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, HTTPException
 
 from repository import TaskRepository
-from schemas import Task, TaskAdd, TaskId
+from schemas import Task, TaskAdd
 
 router = APIRouter(
     prefix='/tasks',
