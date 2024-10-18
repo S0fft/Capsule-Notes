@@ -59,6 +59,25 @@ class TaskRepository:
             return Task.model_validate(task_model.__dict__)
 
     @classmethod
+    async def patch_data(cls, task_id: int, data: dict) -> Task:
+        async with new_session() as session:
+            query = select(TaskTable).where(TaskTable.id == task_id)
+            result = await session.execute(query)
+            task_model = result.scalars().first()
+
+            if not task_model:
+                raise NoResultFound(f"Task with id {task_id} not found!")
+
+            for key, value in data.items():
+                if hasattr(task_model, key) and value is not None:
+                    setattr(task_model, key, value)
+
+            await session.flush()
+            await session.commit()
+
+            return Task.model_validate(task_model.__dict__)
+
+    @classmethod
     async def delete_data(cls, task_id: int) -> bool:
         async with new_session() as session:
             query = select(TaskTable).where(TaskTable.id == task_id)
