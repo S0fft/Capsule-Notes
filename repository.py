@@ -38,7 +38,7 @@ class TaskRepository:
 
             task_model = result.scalars().first()
             if not task_model:
-                raise NoResultFound(f"Task with id {task_id} not found.")
+                raise NoResultFound(f"Task with id {task_id} not found!")
 
             return Task.model_validate(task_model.__dict__)
 
