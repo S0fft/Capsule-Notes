@@ -12,6 +12,13 @@ class Task(TaskAdd):
     model_config = ConfigDict(from_attributes=True)
 
 
+class TaskUpdate(BaseModel):
+    name: str | None = None
+    description: str | None = None
+
+    model_config = ConfigDict(from_attributes=True)
+
+
 class TaskId(BaseModel):
     ok: bool = True
     task_id: int
