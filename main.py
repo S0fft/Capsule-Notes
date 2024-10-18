@@ -8,11 +8,11 @@ from routes import router as tasks_router
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    await delete_tables()
-    print('All data from DB have been deleted!')
+    # await delete_tables()
+    # print('All data from DB have been deleted!')
 
-    await create_tables()
-    print('Created a new empty tabels!')
+    # await create_tables()
+    # print('Created a new empty tabels!')
 
     yield
     print('Shutdown')
