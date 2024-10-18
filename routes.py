@@ -23,6 +23,13 @@ async def get_tasks() -> list[Task]:
     return tasks
 
 
+@router.get('/{task_id}', response_model=Task)
+async def get_task_by_id(task_id: int) -> Task:
+    task = await TaskRepository.get_task_by_id(task_id)
+
+    return task
+
+
 @router.put('/{task_id}', response_model=Task)
 async def update_task(task_id: int, task_data: TaskAdd) -> Task:
     updated_task = await TaskRepository.update_data(task_id, task_data)
