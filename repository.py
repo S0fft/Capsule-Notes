@@ -22,8 +22,8 @@ class TaskRepository:
     async def get_data(cls) -> list[Task]:
         async with new_session() as session:
             query = select(TaskTable)
-
             result = await session.execute(query)
+
             task_models = result.scalars().all()
             tasks_schemas = [Task.model_validate(task_model.__dict__) for task_model in task_models]
 
@@ -50,6 +50,7 @@ class TaskRepository:
         async with new_session() as session:
             query = select(TaskTable).where(TaskTable.id == task_id)
             result = await session.execute(query)
+
             task_model = result.scalars().first()
 
             if not task_model:
@@ -57,4 +58,5 @@ class TaskRepository:
 
             await session.delete(task_model)
             await session.commit()
+
             return True
