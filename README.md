@@ -1,5 +1,5 @@
-# True-Publish-Protocol
-#### Information-Resource — SSR Media Project on Flask + API on Flask-RESTful
+# Capsule-Notes
+#### Notes-App — Note-Taking Asynchronous-Project on FastAPI
 
 An information platform that allows users to publish a variety of articles. 
 The application is built using SSR architecture and also includes an API for managing articles.
