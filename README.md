@@ -1,17 +1,15 @@
 # Capsule-Notes
 #### Notes-App — Note-Taking Asynchronous-Project on FastAPI
 
-An information platform that allows users to publish a variety of articles. 
-The application is built using SSR architecture and also includes an API for managing articles.
+An anonymous note taking app that allows users to not only create and name notes, but also save them for later use.
 
 #### Stack:
  - Pyhton
  - FastAPI
- - Jinja2 
  - SQLAlchemy 
  - SQLite
  - Pytest
- - Pytest
+ - Jinja2 
  - Redis | Celery | Flower
 
 Additional libraries are specified in the `requirements.txt` file.
@@ -28,7 +26,7 @@ Create a root directory on your computer, then open it in your code editor or te
 <br>
 Next, write this command into the command line:
 ```powershell
-git clone https://github.com/S0fft/True-Publish-Protocol.git
+git clone https://github.com/S0fft/Capsule-Notes.git .
 ```
 You will see the project files appear in your directory.
 
@@ -39,10 +37,10 @@ python -m venv .venv
 ```
 
 And activate it:
-
 ```powershell
 .venv\Scripts\Activate
-``` 
+```
+
 ### - Installing the Requirements
 Next, install packages:
 
@@ -54,22 +52,21 @@ pip install -r requirements.txt
 ```
 
  ### - Applying the Migrations
-Run the console in the root directory of the project to access application files and the database.
+Run the following command in the terminal; this will create the folder structure and the configuration file alembic.ini:
 ```bash
-python
+alembic init migrations
 ```
-Afterwards, apply migrations in the Python console
+Now you can create a new migration by running the following command:
 ```bash
-app.app_context().push()
-db.create_all()
+alembic revision --autogenerate -m "initial migration"
 ```
 
 ### - Running the Server
 Then, run server:
 ```powershell
-python main.py
+uvicorn main:app --reload
 ```
-After starting the server, you can access the application by navigating to `http://127.0.0.1:5000` in your browser.
+After starting the server, you can access the application by navigating to `http://127.0.0.1:8000` in your browser.
 
 <details>
 <summary><h3> Project Setup on Unix-Like Systems </h3></summary>
@@ -86,7 +83,7 @@ Create a root directory on your computer, then open it in your code editor or te
 <br>
 Next, write this command into the command line:
 ```powershell
-git clone https://github.com/S0fft/True-Publish-Protocol.git
+git clone https://github.com/S0fft/Capsule-Notes.git .
 ```
 You will see the project files appear in your directory.
 
@@ -108,20 +105,18 @@ pip install -r requirements.txt
 ```
 
 ### - Applying the Migrations
-Run the console in the root directory of the project to access application files and the database.
+Run the following command in the terminal; this will create the folder structure and the configuration file alembic.ini:
 ```bash
-python3
+alembic init migrations
 ```
-Afterwards, apply migrations in the Python console
+Now you can create a new migration by running the following command:
 ```bash
-app.app_context().push()
-db.create_all()
+alembic revision --autogenerate -m "initial migration"
 ```
 
 ### - Running the Server
 ```powershell
-python main.py
+uvicorn main:app --reload
 ```
-After starting the server, you can access the application by navigating to `http://127.0.0.1:5000` in your browser.
-
+After starting the server, you can access the application by navigating to `http://127.0.0.1:8000` in your browser.
 </details>
