@@ -1,7 +1,7 @@
 # Capsule-Notes
 #### Notes-App — Note-Taking Asynchronous-Project on FastAPI
 
-An anonymous note taking app that allows users to not only create and name notes, but also save them for later use.
+A cloud-based note-taking application designed to help users conveniently create, name, and save notes for later use. This tool is ideal for managing personal records and organizing thoughts effectively.
 
 #### Stack:
  - Pyhton
